@@ -1,3 +1,9 @@
-Hello
+for adding all files in a folder
+git add --all
+git commit -am "<commit message>"
+git push <url>
 
-change
+for adding a specific file from a folder
+git add <filename>
+git commit -am "<commit message>"
+git push <url>
