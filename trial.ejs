@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<form id="registerSubmit">
+    Phonenumber:<br>
+    <input type="text"  name="phonenumber" id="phonenumber">
+    <br>
+    Review:<br>
+    <input type="text"  name="review" id="review">
+
+    <br><br>
+    <input type="submit" value="Submit" onclick="gettoken()">
+
+    <br><br>
+    Copy this Token Value and paste it in the bot after entering review:
+    <input type="text"  name="tokenvalue" id="tokenvalue">
+
+
+
+</form>
+<script type="text/javascript">
+    function gettoken() {
+
+        event.preventDefault();
+
+        var phonenumber = $("#phonenumber").val();
+        var review = $("#review").val();
+
+        $.ajax({
+            url: '/home',
+            data: {
+                "phonenumber": phonenumber,
+                "review": review
+            },
+            error: function (err) {
+                console.log("ERROR",err)
+            },
+
+            success: function (info) {
+                console.log("info",info);
+                $("#tokenvalue").val("TK-"+info.token);
+            },
+            type: 'POST',
+        });
+    }
+</script>
+
+</body>
+</html>
